@@ -1,7 +1,9 @@
 package com.cuisinehub.recipes.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.cuisinehub.recipes.DTOs.RecipeSummaryResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +22,7 @@ public class Recipe implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_id")
     private Integer id;
-    
+
     @Column(nullable = false, length = 100)
     private String title;
 
@@ -29,7 +31,7 @@ public class Recipe implements Serializable {
     private Profile profile;
 
     @Column(nullable = false)
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(nullable = false)
     private Integer cookTime;
@@ -40,10 +42,33 @@ public class Recipe implements Serializable {
     @Column(nullable = false)
     private Double rating;
 
+    @Column(nullable = true)
+    private String photo;
+
+    @Column(nullable = false)
+    private String ingredients;
+
     // Empty Constructor
     public Recipe() {
 
     }
+
+    // Converts RecipeEntity to RecipeSummaryReponse
+    public RecipeSummaryResponse toRecipeSummaryResponse(){
+        
+        // Instantiate a RecipeSummaryResponse object
+        RecipeSummaryResponse response = new RecipeSummaryResponse();
+
+        // Setting the values
+        response.setId(id);
+        response.setTitle(title);
+        response.setPhoto(photo);
+        response.setRating(rating);
+
+        // Returns the populated object
+        return response;
+    }
+
 
     // Setters and Getters
     public Integer getId() {
@@ -70,16 +95,32 @@ public class Recipe implements Serializable {
         this.profile = profile;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
     public Integer getCookTime() {
         return cookTime;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
     public void setCookTime(Integer cookTime) {
@@ -131,7 +172,8 @@ public class Recipe implements Serializable {
     @Override
     public String toString() {
         return "Recipe [id=" + id + ", title=" + title + ", profile=" + profile + ", createdAt=" + createdAt
-                + ", cookTime=" + cookTime + ", directions=" + directions + ", rating=" + rating + "]";
+                + ", cookTime=" + cookTime + ", directions=" + directions + ", rating=" + rating + ", photo=" + photo
+                + ", ingredients=" + ingredients + "]";
     }
 
 }
