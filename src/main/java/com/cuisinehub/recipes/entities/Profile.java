@@ -21,15 +21,18 @@ public class Profile implements Serializable {
     @Column(name = "profile_id")
     private Integer id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
+    private String userName;
+
+    @Column(nullable = true, length = 50)
     private String firstName;
 
     @Column(nullable = true, length = 50)
     private String lastName;
-    
+
     @Column(nullable = true)
     private String photo;
-    
+
     @Column(nullable = true)
     private String bio;
 
@@ -40,13 +43,10 @@ public class Profile implements Serializable {
     @JoinColumn(name = "login_id", nullable = false)
     private Login login;
 
-
-
     // Empty Constructor
     public Profile() {
 
     }
-
 
     // Setters and Getters
     public Integer getId() {
@@ -103,6 +103,14 @@ public class Profile implements Serializable {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /* ---------------------- Overriden methods ---------------------- */
