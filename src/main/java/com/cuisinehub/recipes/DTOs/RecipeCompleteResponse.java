@@ -1,22 +1,28 @@
 package com.cuisinehub.recipes.DTOs;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RecipeCompleteResponse {
 
     private int id;
+    private UserBasicResponse author;
     private String title;
-    private LocalDate createdAt;
-    private int cookTime;
     private String photo;
-    private String directions;
     private double rating;
-    private List<String> ingredients;
-    private List<RecipeTagResponse> tags;
+    private int cookTime;
+    private LocalDateTime createdAt;
+    private String directions;
+    private String ingredients;
+    private List<String> tags;
+    private List<ReviewResponse> reviews;
+    
+
+    // TODO should I add another field for the related recipes? or make another request
 
     // Empty Constructor
-    public RecipeCompleteResponse() {
+    public RecipeCompleteResponse(){
+        
     }
 
     public int getId() {
@@ -35,28 +41,12 @@ public class RecipeCompleteResponse {
         this.title = title;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public int getCookTime() {
-        return cookTime;
-    }
-
-    public void setCookTime(int cookTime) {
-        this.cookTime = cookTime;
-    }
-
-    public String getDirections() {
-        return directions;
-    }
-
-    public void setDirections(String directions) {
-        this.directions = directions;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public double getRating() {
@@ -67,28 +57,68 @@ public class RecipeCompleteResponse {
         this.rating = rating;
     }
 
-    public List<String> getIngredients() {
+    public int getCookTime() {
+        return cookTime;
+    }
+
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getDirections() {
+        return directions;
+    }
+
+    public void setDirections(String directions) {
+        this.directions = directions;
+    }
+
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 
-    public List<RecipeTagResponse> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(List<RecipeTagResponse> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 
-    public String getPhoto() {
-        return photo;
+    public List<ReviewResponse> getReviews() {
+        return reviews;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setReviews(List<ReviewResponse> reviews) {
+        this.reviews = reviews;
     }
+
+    public UserBasicResponse getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserBasicResponse author) {
+        this.author = author;
+    }
+
+
+
+
+
+
+
+    
 
 }

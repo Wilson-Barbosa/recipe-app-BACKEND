@@ -3,6 +3,8 @@ package com.cuisinehub.recipes.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.cuisinehub.recipes.DTOs.UserBasicResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,6 +49,22 @@ public class Profile implements Serializable {
     public Profile() {
 
     }
+
+    // Converts ProfileEntity to UserBasicResponse
+    public UserBasicResponse toUserBasicResponse(){
+
+        // Instantiates a UserBasicResponse empty object
+        UserBasicResponse response = new UserBasicResponse();
+
+        // Populate it with data
+        response.setId(id);
+        response.setUserPhoto(photo);
+        response.setUsername(userName);
+
+        return response;
+
+    }
+
 
     // Setters and Getters
     public Integer getId() {

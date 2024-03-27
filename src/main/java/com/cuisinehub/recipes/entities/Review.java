@@ -3,6 +3,8 @@ package com.cuisinehub.recipes.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.cuisinehub.recipes.DTOs.ReviewResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +30,7 @@ public class Review implements Serializable {
     private Double rating;
 
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
@@ -42,6 +44,22 @@ public class Review implements Serializable {
     public Review() {
 
     }
+
+    public ReviewResponse toReviewResponse(){
+        
+        // Instantiate an empty ReviewResponse object
+        ReviewResponse response = new ReviewResponse();
+
+        // Populatin the empty object with data
+        response.setId(id);
+        response.setComment(comment);
+        response.setCreatedAt(createdAt);
+        response.setRating(rating);
+        response.setAuthor(profile.toUserBasicResponse());
+
+        return response;
+    }
+
 
     // Setters and Getters
     public Integer getId() {
@@ -76,12 +94,12 @@ public class Review implements Serializable {
         this.rating = rating;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreateAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Recipe getRecipe() {
@@ -121,7 +139,7 @@ public class Review implements Serializable {
     @Override
     public String toString() {
         return "Review [id=" + id + ", profile=" + profile + ", comment=" + comment + ", rating=" + rating
-                + ", createAt=" + createAt + ", recipe=" + recipe + "]";
+                + ", createAt=" + createdAt + ", recipe=" + recipe + "]";
     }
 
 }

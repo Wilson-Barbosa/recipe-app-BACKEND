@@ -3,6 +3,7 @@ package com.cuisinehub.recipes.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.cuisinehub.recipes.DTOs.RecipeCompleteResponse;
 import com.cuisinehub.recipes.DTOs.RecipeSummaryResponse;
 
 import jakarta.persistence.Column;
@@ -56,7 +57,7 @@ public class Recipe implements Serializable {
     // Converts RecipeEntity to RecipeSummaryReponse
     public RecipeSummaryResponse toRecipeSummaryResponse(){
         
-        // Instantiate a RecipeSummaryResponse object
+        // Instantiates a RecipeSummaryResponse object
         RecipeSummaryResponse response = new RecipeSummaryResponse();
 
         // Setting the values
@@ -64,6 +65,7 @@ public class Recipe implements Serializable {
         response.setTitle(title);
         response.setPhoto(photo);
         response.setRating(rating);
+        response.setCookTime(cookTime);
 
         // Returns the populated object
         return response;

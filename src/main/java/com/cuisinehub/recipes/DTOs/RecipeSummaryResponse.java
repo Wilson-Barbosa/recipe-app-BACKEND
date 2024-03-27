@@ -4,8 +4,9 @@ public class RecipeSummaryResponse {
 
     private int id;
     private String title;
-    private double rating;
     private String photo;
+    private double rating;
+    private int cookTime;
 
     // Empty Constructor
     public RecipeSummaryResponse() {
@@ -42,5 +43,14 @@ public class RecipeSummaryResponse {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public int getCookTime() {
+        return cookTime;
+    }
+
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
+    }
+    
 
 }
