@@ -86,7 +86,7 @@ public class RecipeService {
     // if none is found then searches for an approximate match!
     public List<RecipeSummaryResponse> getListMatchingRecipeResponse(String keyword) {
 
-        Recipe recipe = recipeRepository.findByTitle(keyword); // RecipeEntity
+        Recipe recipe = recipeRepository.findByTitleIgnoreCase(keyword); // RecipeEntity
         List<RecipeSummaryResponse> recipeList = new ArrayList<>(); // RecipeResponse
 
         if (recipe != null) {
@@ -95,7 +95,7 @@ public class RecipeService {
         } else {
             // If an exact match is not found then a list of corresponding matches is
             // searched
-            List<Recipe> recipes = recipeRepository.findAllByTitleContaining(keyword);
+            List<Recipe> recipes = recipeRepository.findAllByTitleContainingIgnoreCase(keyword);
 
             // Converts each RecipeEntity to RecipeSummaryResponse and adds it to the list
             recipes.forEach(r -> {
@@ -103,7 +103,7 @@ public class RecipeService {
             });
         }
 
-        // Returns the list (it can be empty)
+        // Returns the list (it can be empty, the frontend should handle this)
         return recipeList;
 
     }

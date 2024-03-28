@@ -11,9 +11,9 @@ import com.cuisinehub.recipes.entities.Recipe;
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
     // Searches a recipe that matches the string EXACTLY
-    public Recipe findByTitle(String title);
+    public Recipe findByTitleIgnoreCase(String title);
 
     // Searches for a recipe CONTAINING a keyword
-    public List<Recipe> findAllByTitleContaining(String keyword);
+    public List<Recipe> findAllByTitleContainingIgnoreCase(String keyword);
 
 }
