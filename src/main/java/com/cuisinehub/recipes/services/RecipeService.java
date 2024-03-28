@@ -1,6 +1,7 @@
 package com.cuisinehub.recipes.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class RecipeService {
 
         // Recipe
         Recipe recipe = recipeRepository.getReferenceById(id);
+        List<String> ingredients = Arrays.asList(recipe.getIngredients().split("##"));
 
         // Author
         Profile profile = profileRepository.getReferenceById(id);
@@ -67,7 +69,7 @@ public class RecipeService {
         response.setCookTime(recipe.getCookTime());
         response.setCreatedAt(recipe.getCreatedAt());
         response.setDirections(recipe.getDirections());
-        response.setIngredients(recipe.getIngredients());
+        response.setIngredients(ingredients);
         response.setTags(tags);
         response.setReviews(reviews);
         

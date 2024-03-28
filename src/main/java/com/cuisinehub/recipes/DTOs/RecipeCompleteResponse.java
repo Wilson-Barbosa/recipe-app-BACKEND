@@ -13,7 +13,7 @@ public class RecipeCompleteResponse {
     private int cookTime;
     private LocalDateTime createdAt;
     private String directions;
-    private String ingredients;
+    private List<String> ingredients;
     private List<String> tags;
     private List<ReviewResponse> reviews;
     
@@ -81,11 +81,11 @@ public class RecipeCompleteResponse {
         this.directions = directions;
     }
 
-    public String getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
