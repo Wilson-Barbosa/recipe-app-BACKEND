@@ -3,7 +3,6 @@ package com.cuisinehub.recipes.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.cuisinehub.recipes.DTOs.RecipeCompleteResponse;
 import com.cuisinehub.recipes.DTOs.RecipeSummaryResponse;
 
 import jakarta.persistence.Column;
