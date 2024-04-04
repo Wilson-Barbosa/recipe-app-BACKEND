@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.repositories;
+package com.cuisinehub.recipes.repositories.recipes;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.cuisinehub.recipes.entities.RecipeTag;
+import com.cuisinehub.recipes.entities.recipes.RecipeTag;
 
 @Repository
 public interface RecipeTagRepository extends JpaRepository<RecipeTag, Integer> {

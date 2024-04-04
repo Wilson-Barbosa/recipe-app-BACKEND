@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.services;
+package com.cuisinehub.recipes.services.recipes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cuisinehub.recipes.DTOs.ReviewResponse;
-import com.cuisinehub.recipes.entities.Review;
-import com.cuisinehub.recipes.repositories.ReviewRepository;
+import com.cuisinehub.recipes.DTOs.recipes.ReviewResponse;
+import com.cuisinehub.recipes.entities.recipes.Review;
+import com.cuisinehub.recipes.repositories.recipes.ReviewRepository;
 
 @Service
 public class ReviewService {

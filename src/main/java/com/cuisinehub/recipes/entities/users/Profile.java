@@ -1,9 +1,9 @@
-package com.cuisinehub.recipes.entities;
+package com.cuisinehub.recipes.entities.users;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import com.cuisinehub.recipes.DTOs.UserBasicResponse;
+import com.cuisinehub.recipes.DTOs.recipes.UserBasicResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,8 +42,8 @@ public class Profile implements Serializable {
     private Date birthday;
 
     @OneToOne
-    @JoinColumn(name = "login_id", nullable = false)
-    private Login login;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // Empty Constructor
     public Profile() {
@@ -107,12 +107,12 @@ public class Profile implements Serializable {
         this.bio = bio;
     }
 
-    public Login getLogin() {
-        return login;
+    public User getUser() {
+        return user;
     }
 
-    public void setLogin(Login login) {
-        this.login = login;
+    public void setLogin(User user) {
+        this.user = user;
     }
 
     public Date getBirthday() {
@@ -160,7 +160,7 @@ public class Profile implements Serializable {
     @Override
     public String toString() {
         return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", photo=" + photo
-                + ", bio=" + bio + ", login=" + login + "]";
+                + ", bio=" + bio + ", user=" + user + "]";
     }
 
 }

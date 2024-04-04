@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.services;
+package com.cuisinehub.recipes.services.recipes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,26 +7,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cuisinehub.recipes.DTOs.RecipeCompleteResponse;
-import com.cuisinehub.recipes.DTOs.RecipeSummaryResponse;
-import com.cuisinehub.recipes.DTOs.ReviewResponse;
-import com.cuisinehub.recipes.entities.Profile;
-import com.cuisinehub.recipes.entities.Recipe;
-import com.cuisinehub.recipes.repositories.ProfileRepository;
-import com.cuisinehub.recipes.repositories.RecipeRepository;
+import com.cuisinehub.recipes.DTOs.recipes.RecipeCompleteResponse;
+import com.cuisinehub.recipes.DTOs.recipes.RecipeSummaryResponse;
+import com.cuisinehub.recipes.DTOs.recipes.ReviewResponse;
+import com.cuisinehub.recipes.entities.recipes.Recipe;
+import com.cuisinehub.recipes.entities.users.Profile;
+import com.cuisinehub.recipes.repositories.recipes.RecipeRepository;
+import com.cuisinehub.recipes.repositories.users.ProfileRepository;
 
 @Service
 public class RecipeService {
 
     // Injecting the Repositories
-    @Autowired
-    RecipeRepository recipeRepository;
-    @Autowired
-    ProfileRepository profileRepository;
-    @Autowired
-    ReviewService reviewService;
-    @Autowired
-    RecipeTagService recipeTagService;
+    @Autowired RecipeRepository recipeRepository;
+    @Autowired ProfileRepository profileRepository;
+    @Autowired ReviewService reviewService;
+    @Autowired RecipeTagService recipeTagService;
 
     // Get a list of RecipeSummaryResponse
     public List<RecipeSummaryResponse> getRecipeSummary() {

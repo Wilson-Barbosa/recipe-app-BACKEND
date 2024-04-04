@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cuisinehub.recipes.DTOs.RecipeCompleteResponse;
-import com.cuisinehub.recipes.DTOs.RecipeSummaryResponse;
-import com.cuisinehub.recipes.services.RecipeService;
+import com.cuisinehub.recipes.DTOs.recipes.RecipeCompleteResponse;
+import com.cuisinehub.recipes.DTOs.recipes.RecipeSummaryResponse;
+import com.cuisinehub.recipes.services.recipes.RecipeService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @CrossOrigin
-@RequestMapping("recipes")
+@RequestMapping("api/v1/recipes")
 public class RecipeController {
 
     // Injecting the RecipeService

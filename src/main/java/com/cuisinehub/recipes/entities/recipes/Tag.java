@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.entities;
+package com.cuisinehub.recipes.entities.recipes;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.entities;
+package com.cuisinehub.recipes.entities.recipes;
 
 import java.io.Serializable;
 
@@ -7,25 +7,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "login")
-public class Login implements Serializable {
+@Table(name = "recipe_tag")
+public class RecipeTag implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "login_id", nullable = false)
+    @Column(name = "recipe_tag_id")
     private Integer id;
 
-    @Column(nullable = false, length = 50)
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipe recipe;
 
-    @Column(nullable = false)
-    private String passwordHash;
+    @ManyToOne
+    @JoinColumn(name = "tag_id", nullable = false)
+    private Tag tag;
 
     // Empty Constructor
-    public Login() {
+    public RecipeTag() {
 
     }
 
@@ -38,20 +42,20 @@ public class Login implements Serializable {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public Tag getTag() {
+        return tag;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     /* ---------------------- Overriden methods ---------------------- */
@@ -71,7 +75,7 @@ public class Login implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Login other = (Login) obj;
+        RecipeTag other = (RecipeTag) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -82,7 +86,7 @@ public class Login implements Serializable {
 
     @Override
     public String toString() {
-        return "Login [id=" + id + ", email=" + email + ", passwordHash=" + passwordHash + "]";
+        return "RecipeTag [id=" + id + ", recipe=" + recipe + ", tag=" + tag + "]";
     }
 
 }

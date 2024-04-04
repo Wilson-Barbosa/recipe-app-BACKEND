@@ -1,12 +1,12 @@
-package com.cuisinehub.recipes.services;
+package com.cuisinehub.recipes.services.recipes;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cuisinehub.recipes.entities.Tag;
-import com.cuisinehub.recipes.repositories.TagRepository;
+import com.cuisinehub.recipes.entities.recipes.Tag;
+import com.cuisinehub.recipes.repositories.recipes.TagRepository;
 
 @Service
 public class TagService {

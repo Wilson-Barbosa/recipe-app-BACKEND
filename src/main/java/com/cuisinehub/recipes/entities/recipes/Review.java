@@ -1,9 +1,10 @@
-package com.cuisinehub.recipes.entities;
+package com.cuisinehub.recipes.entities.recipes;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.cuisinehub.recipes.DTOs.ReviewResponse;
+import com.cuisinehub.recipes.DTOs.recipes.ReviewResponse;
+import com.cuisinehub.recipes.entities.users.Profile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

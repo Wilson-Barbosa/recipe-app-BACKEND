@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.DTOs;
+package com.cuisinehub.recipes.DTOs.recipes;
 
 public class RecipeSummaryResponse {
 
