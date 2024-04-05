@@ -28,6 +28,7 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.POST, "api/v1/auth/users/login").permitAll() // Public endpoint, anyone can TRY login
                             .requestMatchers(HttpMethod.POST, "api/v1/recipes").hasRole("FULLUSER") // Only full users can post recipes
                             .requestMatchers(HttpMethod.GET, "api/v1/recipes/**").permitAll() // Public endpoint, anyone can view recipes
+                            .requestMatchers(HttpMethod.GET, "images/**").permitAll() // Public endpoint, so the images can be sent to the users
                             .anyRequest().authenticated())  // By default all other endpoints no specified will require authentication
                    .build();
     }

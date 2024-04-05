@@ -1,7 +1,9 @@
 package com.cuisinehub.recipes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("api/v1/auth/users")
+@CrossOrigin
 public class UserController {
 
     // Injecting the service
@@ -22,11 +25,13 @@ public class UserController {
 
     // Endpoint to register new users
     @PostMapping("/register")
-    public ResponseEntity<String> registerNewUser(@RequestBody @Valid RegisterRequest request){
-
+    public ResponseEntity<Void> registerNewUser(@RequestBody @Valid RegisterRequest request){
+        
+        // calls the service to register a new user
         userService.register(request);
 
-        return ResponseEntity.ok().body("User Registered");
+        // If the request is successful then this line is executed and the response is sent to client
+        return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }
 
