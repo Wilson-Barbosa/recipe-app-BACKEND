@@ -47,7 +47,7 @@ public class UserService {
 
         // Then I check if the username is already registered
         if(profileRepository.findByUserName(username) != null){
-            throw new RuntimeException("User already registered");
+            throw new RuntimeException("Username already registered");
         }
         
         // Creating and populating the UserEntity (this line is only executed if no exceptions are thrown))
@@ -56,14 +56,15 @@ public class UserService {
         user.setPasswordHash(new BCryptPasswordEncoder().encode(password)); // saveing the hashed password
         user.setRole(UserRole.BASICUSER); // By default all new users are basic-users
         
+        // Creating a profile Entity, for it needs the 
         Profile profile = new Profile();
         profile.setUserName(username);
         profile.setLogin(user);
 
-        // Save the UserEntity in the database
+        // Save the UserEntity in the database (it must be saved BEFORE the profile)
         userRepository.save(user); 
         
-        // Save the username
+        // Save the username (it must be saved AFTER the user, or a constraint violation will happen)
         profileRepository.save(profile); 
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
