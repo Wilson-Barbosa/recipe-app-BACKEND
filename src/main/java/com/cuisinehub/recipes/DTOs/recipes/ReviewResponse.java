@@ -3,6 +3,8 @@ package com.cuisinehub.recipes.DTOs.recipes;
 
 import java.time.LocalDateTime;
 
+import com.cuisinehub.recipes.DTOs.users.UserBasicResponse;
+
 public class ReviewResponse {
 
     private int id;

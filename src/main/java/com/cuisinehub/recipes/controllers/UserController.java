@@ -35,7 +35,7 @@ public class UserController {
 
     }
 
-    // Endpoint to register new users
+    // Endpoint to Log users
     @PostMapping("/login")
     public ResponseEntity<String> logUser(@RequestBody @Valid LoginRequest login){
 

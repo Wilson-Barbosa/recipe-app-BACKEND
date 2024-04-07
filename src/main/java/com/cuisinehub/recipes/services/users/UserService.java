@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,18 +25,26 @@ public class UserService {
     @Autowired AuthenticationManager authenticationManager;
 
     // Gets called when a user is trying LOGIN
-    public void saveUser(LoginRequest loginRequest) {
+    public ResponseEntity<String> saveUser(LoginRequest loginRequest) {
 
-        UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-        authenticationManager.authenticate(usernamePassword);
+        // Tries to validate the login attemp. If the information is invalid an exception is thrown
+        try{
+            UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
+            authenticationManager.authenticate(usernamePassword);
+    
+            return ResponseEntity.ok().build();
+        }
+        catch(BadCredentialsException e){
+            // TODO right now I'm not specifying which one is wrong, maybe improve this message soon
+            throw new BadCredentialsException("Email or password invalid");
+        }
 
     }
 
     // Gets called when a user tries to REGISTER
     public ResponseEntity<Void> register(RegisterRequest registerRequest){
 
-        // TODO the exceptions are not being thrown correctly
-
+        // Creating some variables to 
         String username = registerRequest.getUsername();
         String email = registerRequest.getEmail();
         String password = registerRequest.getPassword();

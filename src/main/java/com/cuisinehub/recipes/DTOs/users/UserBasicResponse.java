@@ -1,4 +1,4 @@
-package com.cuisinehub.recipes.DTOs.recipes;
+package com.cuisinehub.recipes.DTOs.users;
 
 public class UserBasicResponse {
     

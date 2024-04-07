@@ -11,10 +11,10 @@ import com.cuisinehub.recipes.repositories.users.UserRepository;
 @Service
 public class AuthorizationService implements UserDetailsService {
 
-    // Injecting the repository that calls 
+    // Injecting the repository that queries for users
     @Autowired UserRepository userRepository;
 
-    // Method that calls the repository and searches a LoginEntity from the database
+    // Method that calls the repository and searches a UserEntity from the database
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username);

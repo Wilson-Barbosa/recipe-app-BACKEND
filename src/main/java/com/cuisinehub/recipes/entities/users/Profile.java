@@ -3,7 +3,7 @@ package com.cuisinehub.recipes.entities.users;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.cuisinehub.recipes.DTOs.recipes.UserBasicResponse;
+import com.cuisinehub.recipes.DTOs.users.UserBasicResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
