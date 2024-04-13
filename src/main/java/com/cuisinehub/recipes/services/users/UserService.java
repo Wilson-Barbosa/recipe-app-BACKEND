@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import com.cuisinehub.recipes.entities.users.User;
 import com.cuisinehub.recipes.entities.users.UserRole;
 import com.cuisinehub.recipes.entities.users.Profile;
 import com.cuisinehub.recipes.repositories.users.UserRepository;
+import com.cuisinehub.recipes.security.TokenService;
 import com.cuisinehub.recipes.repositories.users.ProfileRepository;
 
 @Service
@@ -23,16 +25,26 @@ public class UserService {
     @Autowired UserRepository userRepository;
     @Autowired ProfileRepository profileRepository;
     @Autowired AuthenticationManager authenticationManager;
+    @Autowired TokenService tokenService;
 
     // Gets called when a user is trying LOGIN
-    public ResponseEntity<String> saveUser(LoginRequest loginRequest) {
+    public ResponseEntity<Void> logUserIn(LoginRequest loginRequest) {
 
         // Tries to validate the login attemp. If the information is invalid an exception is thrown
         try{
             UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-            authenticationManager.authenticate(usernamePassword);
-    
-            return ResponseEntity.ok().build();
+            
+             // Authenticate with Spring Security
+            Authentication authentication = authenticationManager.authenticate(usernamePassword);
+            
+            // Get the authenticated User object from the Authentication object
+            User user = (User) authentication.getPrincipal(); 
+           
+            // Creates the token
+            String token = tokenService.generateToken(user);
+
+            // Returns an empty response containing the token inside the header
+            return ResponseEntity.ok().header("Authorization", "Bearer " + token).build();
         }
         catch(BadCredentialsException e){
             // TODO right now I'm not specifying which one is wrong, maybe improve this message soon
@@ -62,7 +74,7 @@ public class UserService {
         // Creating and populating the UserEntity (this line is only executed if no exceptions are thrown))
         User user = new User();
         user.setEmail(email);
-        user.setPasswordHash(new BCryptPasswordEncoder().encode(password)); // saveing the hashed password
+        user.setPasswordHash(new BCryptPasswordEncoder().encode(password)); // saving the hashed password
         user.setRole(UserRole.BASICUSER); // By default all new users are basic-users
         
         // Creating a profile Entity, for it needs the 
@@ -75,6 +87,8 @@ public class UserService {
         
         // Save the username (it must be saved AFTER the user, or a constraint violation will happen)
         profileRepository.save(profile); 
+
+        // TODO here I will call an emailsender
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

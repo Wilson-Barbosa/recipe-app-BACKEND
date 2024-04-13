@@ -1,5 +1,6 @@
 package com.cuisinehub.recipes.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,10 +12,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+
+    @Autowired SecurityFilter securityFilter;
 
     // Overrides the deafault implementations of security, so that I can make my own configurations
     // the method here makes the session STATELESS and applies filters to my endpoints
@@ -30,6 +34,7 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.GET, "api/v1/recipes/**").permitAll() // Public endpoint, anyone can view recipes
                             .requestMatchers(HttpMethod.GET, "images/**").permitAll() // Public endpoint, so the images can be sent to the users
                             .anyRequest().authenticated())  // By default all other endpoints no specified will require authentication
+                   .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                    .build();
     }
 

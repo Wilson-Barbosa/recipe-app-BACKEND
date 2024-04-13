@@ -37,12 +37,8 @@ public class UserController {
 
     // Endpoint to Log users
     @PostMapping("/login")
-    public ResponseEntity<String> logUser(@RequestBody @Valid LoginRequest login){
-
-        userService.saveUser(login);
-
-        return ResponseEntity.ok().body("User Logged");
-
+    public ResponseEntity<Void> logUser(@RequestBody @Valid LoginRequest login){
+        return userService.logUserIn(login);
     }
 
 
