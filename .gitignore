@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# application.properties file (to hide senstive data)
+application.properties
